@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YES — Yoga Energy Sound</title>
+  <meta name="description" content="Say YES to your highest self. A holistic triad of Yoga, Energy, and Sound designed to align your mind, body, and frequency." />
+
+  <!-- Fonts: Cormorant Garamond (serif headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       GLOBAL DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --sand:        #F7F5F0;
+      --navy:        #0A1128;
+      --amber:       #E27D5F;
+      --sage:        #859B8E;
+      --navy-mid:    #12213F;
+      --sand-dark:   #EDE9E1;
+      --white:       #FFFFFF;
+      --text-dark:   #1A1A2E;
+      --text-muted:  #5C6678;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+
+      --z-nav:     50;
+      --z-overlay: 40;
+      --z-content: 30;
+      --z-base:    10;
+
+      --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--sand);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ============================================================
+       TYPOGRAPHY SCALE
+    ============================================================ */
+    h1, h2, h3, h4 {
+      font-family: var(--serif);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.8rem, 7vw, 6rem); }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+    h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+    p  { max-width: 65ch; }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      z-index: var(--z-nav);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.875rem 1.75rem;
+      border-radius: 100px;
+      background: rgba(10, 17, 40, 0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth);
+    }
+
+    .nav.scrolled {
+      background: rgba(10, 17, 40, 0.85);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span { color: var(--amber); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      transition: color 200ms;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 3px; }
+
+    .nav-cta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white) !important;
+      background: var(--amber);
+      padding: 0.5rem 1.25rem;
+      border-radius: 100px;
+      transition: background 200ms, transform 200ms !important;
+      cursor: pointer;
+    }
+    .nav-cta:hover { background: #d06b4e; transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: 200ms;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* WebGL / CSS motion background */
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: var(--z-base);
+    }
+
+    /* Gradient overlay for text legibility */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: var(--z-overlay);
+      background: linear-gradient(
+        180deg,
+        rgba(10, 17, 40, 0.45) 0%,
+        rgba(10, 17, 40, 0.62) 50%,
+        rgba(10, 17, 40, 0.75) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: var(--z-content);
+      padding: 2rem;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-smooth) 0.3s forwards;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-smooth) 0.55s forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      margin: 0 auto 2.5rem;
+      max-width: 52ch;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-smooth) 0.8s forwards;
+    }
+
+    .hero-sub strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .hero-cta-wrap {
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-smooth) 1s forwards;
+    }
+
+    /* Pulse CTA button */
+    .btn-pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--amber);
+      padding: 1rem 2.25rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: background 250ms, transform 250ms var(--ease-smooth);
+      animation: heartbeatPulse 2.4s ease-in-out 1.8s infinite;
+    }
+    .btn-pulse:hover {
+      background: #d06b4e;
+      transform: translateY(-2px) scale(1.02);
+      animation: none;
+    }
+    .btn-pulse:focus-visible { outline: 3px solid rgba(226,125,95,0.6); outline-offset: 4px; }
+
+    .btn-pulse::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 100px;
+      background: var(--amber);
+      opacity: 0;
+      animation: ripplePulse 2.4s ease-in-out 1.8s infinite;
+    }
+
+    @keyframes heartbeatPulse {
+      0%, 85%, 100% { box-shadow: 0 0 0 0 rgba(226,125,95,0); }
+      40%           { box-shadow: 0 0 0 12px rgba(226,125,95,0.28); }
+      60%           { box-shadow: 0 0 0 20px rgba(226,125,95,0.1); }
+    }
+
+    @keyframes ripplePulse {
+      0%, 100% { transform: scale(1); opacity: 0; }
+      40%      { transform: scale(1.1); opacity: 0.18; }
+    }
+
+    /* Scroll indicator */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: var(--z-content);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.8s forwards;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.6; transform: scaleY(1); transform-origin: top; }
+      50%       { opacity: 1; }
+    }
+
+    /* ============================================================
+       KEYFRAMES (shared)
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Scroll-reveal classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* ============================================================
+       METHODOLOGY / TRIAD SECTION
+    ============================================================ */
+    .method {
+      background: var(--sand);
+      padding: clamp(5rem, 10vw, 9rem) 0;
+    }
+
+    .method-header {
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .method-header h2 { color: var(--text-dark); }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .method-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+    }
+
+    .method-card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid rgba(133, 155, 142, 0.15);
+      transition: box-shadow 300ms var(--ease-smooth), transform 300ms var(--ease-smooth);
+      cursor: default;
+    }
+    .method-card:hover {
+      box-shadow: 0 16px 48px rgba(133, 155, 142, 0.18);
+      transform: translateY(-6px);
+    }
+
+    .method-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(133, 155, 142, 0.12);
+    }
+
+    .method-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--sage);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .method-card h3 {
+      color: var(--text-dark);
+      margin-bottom: 0.875rem;
+    }
+
+    .method-card p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 30ch;
+      margin: 0 auto;
+    }
+
+    /* ============================================================
+       OFFERINGS SECTION
+    ============================================================ */
+    .offerings {
+      background: var(--navy);
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle background glow */
+    .offerings::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, rgba(133,155,142,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .offerings-header {
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+    .offerings-header h2 { color: var(--white); }
+
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 960px) {
+      .offerings-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    }
+
+    /* Glassmorphism card */
+    .offer-card {
+      position: relative;
+      padding: 2.75rem 2.25rem;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      transition: border-color 350ms var(--ease-smooth), background 350ms var(--ease-smooth), transform 300ms var(--ease-smooth);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .offer-card:hover {
+      border-color: var(--amber);
+      background: rgba(255, 255, 255, 0.09);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(226, 125, 95, 0.12), 0 0 0 1px rgba(226,125,95,0.3);
+    }
+
+    .offer-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(226, 125, 95, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.75rem;
+      transition: background 300ms;
+    }
+    .offer-card:hover .offer-card-icon { background: rgba(226, 125, 95, 0.25); }
+
+    .offer-card-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .offer-card h3 {
+      color: var(--white);
+      margin-bottom: 0.875rem;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+    }
+
+    .offer-card p {
+      font-size: 0.975rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .offer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--amber);
+      border: 1px solid rgba(226,125,95,0.35);
+      padding: 0.625rem 1.375rem;
+      border-radius: 100px;
+      width: fit-content;
+      transition: background 250ms, color 250ms, border-color 250ms;
+      cursor: pointer;
+    }
+    .offer-btn:hover {
+      background: var(--amber);
+      color: var(--white);
+      border-color: var(--amber);
+    }
+    .offer-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+    /* ============================================================
+       TESTIMONIALS SECTION
+    ============================================================ */
+    .testimonials {
+      background: var(--sand);
+      padding: clamp(5rem, 10vw, 9rem) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 4.5rem);
+    }
+    .testimonials-header h2 { color: var(--text-dark); }
+
+    .testimonial-slider {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .testimonial-track {
+      overflow: hidden;
+    }
+
+    .testimonial-slides {
+      display: flex;
+      transition: transform 600ms var(--ease-smooth);
+    }
+
+    .testimonial-slide {
+      min-width: 100%;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .quote-mark {
+      font-family: var(--serif);
+      font-size: 6rem;
+      line-height: 0.6;
+      color: var(--amber);
+      opacity: 0.35;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-slide blockquote {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-style: italic;
+      color: var(--text-dark);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .testimonial-author {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .testimonial-author strong {
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: 0.05em;
+    }
+
+    .testimonial-author span {
+      font-size: 0.8rem;
+      color: var(--sage);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Pagination dots */
+    .testimonial-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.625rem;
+      margin-top: 2.5rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(133,155,142,0.3);
+      border: none;
+      cursor: pointer;
+      transition: background 300ms, transform 300ms, width 300ms;
+      padding: 0;
+    }
+    .dot.active {
+      background: var(--amber);
+      width: 24px;
+      border-radius: 100px;
+    }
+    .dot:hover { background: var(--sage); }
+    .dot:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+    /* Slider arrows */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(133,155,142,0.3);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 250ms, box-shadow 250ms, background 250ms;
+    }
+    .slider-arrow:hover {
+      border-color: var(--amber);
+      box-shadow: 0 4px 16px rgba(226,125,95,0.18);
+      background: var(--sand);
+    }
+    .slider-arrow:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .slider-arrow svg { width: 18px; height: 18px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
+    .slider-arrow:hover svg { stroke: var(--amber); }
+
+    .arrow-prev { left: -3.5rem; }
+    .arrow-next { right: -3.5rem; }
+
+    @media (max-width: 900px) {
+      .arrow-prev { left: -0.5rem; }
+      .arrow-next { right: -0.5rem; }
+      .testimonial-slide { padding: 0 3.5rem; }
+    }
+
+    /* ============================================================
+       FINAL CTA SECTION
+    ============================================================ */
+    .final-cta {
+      padding: clamp(6rem, 12vw, 10rem) 0;
+      background: linear-gradient(135deg,
+        rgba(133, 155, 142, 0.12) 0%,
+        rgba(226, 125, 95, 0.08) 50%,
+        rgba(133, 155, 142, 0.15) 100%
+      ),
+      var(--sand);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative blur circles */
+    .final-cta::before,
+    .final-cta::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .final-cta::before {
+      width: 500px;
+      height: 500px;
+      background: rgba(133,155,142,0.15);
+      top: -20%;
+      right: -15%;
+    }
+    .final-cta::after {
+      width: 400px;
+      height: 400px;
+      background: rgba(226,125,95,0.1);
+      bottom: -20%;
+      left: -10%;
+    }
+
+    .final-cta .container { position: relative; z-index: 2; }
+
+    .final-cta h2 {
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .final-cta h2 em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .final-cta-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 auto 2.75rem;
+    }
+
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--navy);
+      padding: 1.1rem 2.5rem;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: background 250ms var(--ease-smooth), transform 250ms var(--ease-smooth), box-shadow 250ms var(--ease-smooth);
+    }
+    .btn-navy:hover {
+      background: var(--amber);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(226,125,95,0.3);
+    }
+    .btn-navy:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--navy);
+      padding: 5rem 0 2.5rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 3rem 2rem;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .footer-brand .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .footer-brand .footer-logo span { color: var(--amber); }
+
+    .footer-brand p {
+      font-size: 0.925rem;
+      line-height: 1.7;
+      max-width: 30ch;
+    }
+
+    .footer-newsletter {
+      margin-top: 1.75rem;
+    }
+
+    .footer-newsletter label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.625rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      border-radius: 100px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      max-width: 360px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.875rem;
+      color: var(--white);
+      outline: none;
+      min-width: 0;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.35); }
+
+    .newsletter-form button {
+      background: var(--amber);
+      border: none;
+      padding: 0.75rem 1.25rem;
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 200ms;
+    }
+    .newsletter-form button:hover { background: #d06b4e; }
+    .newsletter-form button:focus-visible { outline: 2px solid var(--white); outline-offset: -3px; }
+
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .footer-col a {
+      font-size: 0.925rem;
+      color: rgba(255,255,255,0.65);
+      transition: color 200ms;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-col a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+
+    /* Social icons row */
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 250ms, background 250ms;
+      text-decoration: none;
+    }
+    .social-btn:hover { border-color: var(--amber); background: rgba(226,125,95,0.12); }
+    .social-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: rgba(255,255,255,0.7);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      max-width: none;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-legal a {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      transition: color 200ms;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+    .footer-legal a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+
+    /* ============================================================
+       CANVAS / ANIMATION — WebGL fluid background
+    ============================================================ */
+    canvas#heroCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ============================================================
+       DIVIDER ornament
+    ============================================================ */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0 auto 1.5rem;
+    }
+    .ornament-line {
+      width: 40px;
+      height: 1px;
+      background: var(--sage);
+      opacity: 0.4;
+    }
+    .ornament svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--sage);
+      fill: none;
+      stroke-width: 1.5;
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       FOCUS-VISIBLE global reset for better a11y
+    ============================================================ */
+    :focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 3px;
+    }
+    :focus:not(:focus-visible) { outline: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="navbar" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="YES — Yoga Energy Sound home">
+      <span>YES</span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#methodology">The Method</a></li>
+      <li><a href="#offerings">Offerings</a></li>
+      <li><a href="#testimonials">Stories</a></li>
+      <li><a href="#begin" class="nav-cta">Begin Your Journey</a></li>
+    </ul>
+
+    <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" aria-labelledby="hero-heading">
+
+    <!-- WebGL / Canvas motion background -->
+    <div class="hero-canvas" aria-hidden="true">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+
+    <!-- Gradient overlay -->
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <span class="hero-eyebrow" aria-hidden="true">Yoga &nbsp;·&nbsp; Energy &nbsp;·&nbsp; Sound</span>
+
+      <h1 id="hero-heading">
+        Say <em>YES</em> to your<br />highest self.
+      </h1>
+
+      <p class="hero-sub">
+        <strong>Yoga. Energy. Sound.</strong> A holistic triad designed to align<br />
+        your mind, body, and frequency.
+      </p>
+
+      <div class="hero-cta-wrap">
+        <a href="#methodology" class="btn-pulse" role="button">
+          Find Your YES
+          <!-- Arrow right icon (SVG) -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       METHODOLOGY — THE TRIAD
+  ============================================================ -->
+  <section class="method" id="methodology" aria-labelledby="method-heading">
+    <div class="container">
+
+      <div class="method-header reveal">
+        <span class="section-label">Our Approach</span>
+        <h2 id="method-heading">The Power of <em style="font-style:italic;color:var(--amber)">YES.</em></h2>
+      </div>
+
+      <div class="method-grid">
+
+        <!-- Yoga -->
+        <div class="method-card reveal reveal-delay-1">
+          <div class="method-icon" aria-hidden="true">
+            <!-- Lotus / figure SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C9.5 2 7.5 4 7.5 6.5S9 10 12 10s4.5-2 4.5-4.5S14.5 2 12 2z"/>
+              <path d="M12 10v12M8 22c0-4 1.5-7 4-8M16 22c0-4-1.5-7-4-8"/>
+              <path d="M5 16c2-2 4.5-3 7-3s5 1 7 3"/>
+            </svg>
+          </div>
+          <h3>Yoga.</h3>
+          <p>Ground your physical body through intentional movement and breathwork. Each posture a prayer, each breath a return.</p>
+        </div>
+
+        <!-- Energy -->
+        <div class="method-card reveal reveal-delay-2">
+          <div class="method-icon" aria-hidden="true">
+            <!-- Spark / aura SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            </svg>
+          </div>
+          <h3>Energy.</h3>
+          <p>Clear blockages and awaken your vital life force. Reiki, breathwork, and subtle body awareness to illuminate what was dormant.</p>
+        </div>
+
+        <!-- Sound -->
+        <div class="method-card reveal reveal-delay-3">
+          <div class="method-icon" aria-hidden="true">
+            <!-- Concentric waves SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="2"/>
+              <path d="M12 7a5 5 0 0 1 0 10M12 3a9 9 0 0 1 0 18"/>
+              <path d="M12 7a5 5 0 0 0 0 10M12 3a9 9 0 0 0 0 18" opacity="0.3"/>
+            </svg>
+          </div>
+          <h3>Sound.</h3>
+          <p>Recalibrate your nervous system with healing frequencies and vibrational therapy. Let the bowls guide you home.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OFFERINGS
+  ============================================================ -->
+  <section class="offerings" id="offerings" aria-labelledby="offerings-heading">
+    <div class="container">
+
+      <div class="offerings-header reveal">
+        <span class="section-label" style="color:var(--sage)">Your Path Forward</span>
+        <h2 id="offerings-heading" style="color:var(--white)">How Will You Say <em style="font-style:italic;color:var(--amber)">YES?</em></h2>
+      </div>
+
+      <div class="offerings-grid">
+
+        <!-- Digital Courses -->
+        <div class="offer-card reveal reveal-delay-1">
+          <div class="offer-card-icon" aria-hidden="true">
+            <!-- Play / library icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <path d="M8 21h8M12 17v4"/>
+              <polygon points="10 8 16 11 10 14 10 8"/>
+            </svg>
+          </div>
+          <h3>Digital Courses.</h3>
+          <p>Journey inward at your own pace with our on-demand library of YES practices—available wherever, whenever you need to return to yourself.</p>
+          <a href="#" class="offer-btn" role="button">
+            Explore Courses
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Live Events -->
+        <div class="offer-card reveal reveal-delay-2">
+          <div class="offer-card-icon" aria-hidden="true">
+            <!-- Calendar / event icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+            </svg>
+          </div>
+          <h3>Live Events.</h3>
+          <p>Join our community for immersive breath, bowl, and movement workshops. Gather in the energy of collective healing and shared resonance.</p>
+          <a href="#" class="offer-btn" role="button">
+            View Schedule
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Private Sessions -->
+        <div class="offer-card reveal reveal-delay-3">
+          <div class="offer-card-icon" aria-hidden="true">
+            <!-- User / session icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Private Sessions.</h3>
+          <p>Bespoke 1-on-1 guidance tailored entirely to your personal frequency. A sacred space held just for you and your unique unfolding.</p>
+          <a href="#" class="offer-btn" role="button">
+            Book a Session
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+    <div class="container">
+
+      <div class="testimonials-header reveal">
+        <span class="section-label">Voices of Transformation</span>
+
+        <!-- Ornament -->
+        <div class="ornament" aria-hidden="true">
+          <div class="ornament-line"></div>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 7a5 5 0 0 1 0 10"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>
+          <div class="ornament-line"></div>
+        </div>
+
+        <h2 id="testimonials-heading">What Happens When You Say <em style="font-style:italic;color:var(--amber)">YES.</em></h2>
+      </div>
+
+      <div class="testimonial-slider reveal" role="region" aria-label="Testimonials" aria-live="polite">
+
+        <!-- Arrows -->
+        <button class="slider-arrow arrow-prev" id="prevBtn" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" stroke="currentColor"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="slider-arrow arrow-next" id="nextBtn" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" stroke="currentColor"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <div class="testimonial-track">
+          <div class="testimonial-slides" id="slides">
+
+            <!-- Slide 1 -->
+            <div class="testimonial-slide" role="group" aria-label="Testimonial 1 of 3">
+              <span class="quote-mark" aria-hidden="true">"</span>
+              <blockquote>
+                I didn't just learn how to move; I learned how to resonate. Finding YES completely transformed my daily routine.
+              </blockquote>
+              <div class="testimonial-author">
+                <strong>Sarah M.</strong>
+                <span>Digital Courses Student</span>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-slide" role="group" aria-label="Testimonial 2 of 3">
+              <span class="quote-mark" aria-hidden="true">"</span>
+              <blockquote>
+                The integration of sound baths with energy work is profound. I finally feel aligned—in my body and in my life.
+              </blockquote>
+              <div class="testimonial-author">
+                <strong>David L.</strong>
+                <span>Live Events Participant</span>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial-slide" role="group" aria-label="Testimonial 3 of 3">
+              <span class="quote-mark" aria-hidden="true">"</span>
+              <blockquote>
+                Saying YES was the best decision I made for my mental and physical health this year. I am forever changed.
+              </blockquote>
+              <div class="testimonial-author">
+                <strong>Elena R.</strong>
+                <span>Private Sessions Client</span>
+              </div>
+            </div>
+
+          </div><!-- /slides -->
+        </div><!-- /track -->
+
+        <!-- Dots -->
+        <div class="testimonial-dots" role="tablist" aria-label="Testimonial navigation">
+          <button class="dot active" data-index="0" role="tab" aria-selected="true" aria-label="Testimonial 1" tabindex="0"></button>
+          <button class="dot"        data-index="1" role="tab" aria-selected="false" aria-label="Testimonial 2" tabindex="-1"></button>
+          <button class="dot"        data-index="2" role="tab" aria-selected="false" aria-label="Testimonial 3" tabindex="-1"></button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+  ============================================================ -->
+  <section class="final-cta" id="begin" aria-labelledby="cta-heading">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Your Invitation</span>
+        <h2 id="cta-heading">Are you ready to say <em>YES?</em></h2>
+        <p class="final-cta-sub">
+          Step into the flow of Yoga, Energy, and Sound today.<br />
+          Your highest self is already waiting.
+        </p>
+        <a href="#offerings" class="btn-navy" role="button">
+          Begin Your Journey
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- Brand + newsletter -->
+        <div class="footer-brand">
+          <a href="#" class="footer-logo" aria-label="YES home"><span>YES</span></a>
+          <p>Yoga. Energy. Sound. A holistic triad for your highest self. Wherever you are on the path, you belong here.</p>
+
+          <div class="footer-newsletter">
+            <label for="newsletter-email">Get high-frequency updates straight to your inbox.</label>
+            <form class="newsletter-form" action="#" method="post" novalidate>
+              <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                placeholder="your@email.com"
+                autocomplete="email"
+                required
+                aria-label="Email address for newsletter"
+              />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Connect links -->
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul role="list">
+            <li>
+              <a href="#" aria-label="YES on Instagram">
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="YES Soundscapes on Spotify">
+                Spotify
+              </a>
+            </li>
+            <li>
+              <a href="#" aria-label="Contact YES">
+                Contact
+              </a>
+            </li>
+          </ul>
+
+          <div class="footer-socials" style="margin-top:1.5rem">
+            <!-- Instagram -->
+            <a href="#" class="social-btn" aria-label="YES on Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <!-- Spotify -->
+            <a href="#" class="social-btn" aria-label="YES on Spotify">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Offerings links -->
+        <div class="footer-col">
+          <h4>Offerings</h4>
+          <ul role="list">
+            <li><a href="#offerings">Digital Courses</a></li>
+            <li><a href="#offerings">Live Events</a></li>
+            <li><a href="#offerings">Private Sessions</a></li>
+            <li><a href="#methodology">The YES Method</a></li>
+          </ul>
+        </div>
+
+      </div><!-- /footer-grid -->
+
+      <div class="footer-bottom">
+        <p>© 2026 Yoga Energy Sound. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ----------------------------------------------------------
+       HERO: WebGL fluid / soundwave canvas
+    ---------------------------------------------------------- */
+    (function () {
+      const canvas = document.getElementById('heroCanvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+      if (!gl) {
+        // Fallback: deep navy gradient background
+        canvas.style.background =
+          'linear-gradient(135deg, #0A1128 0%, #12213F 40%, #1a0e2e 100%)';
+        return;
+      }
+
+      // Resize
+      function resize() {
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      /* --- Vertex shader --- */
+      const vsSource = `
+        attribute vec2 a_pos;
+        void main() {
+          gl_Position = vec4(a_pos, 0.0, 1.0);
+        }
+      `;
+
+      /* --- Fragment shader: fluid soundwave / aura --- */
+      const fsSource = `
+        precision mediump float;
+        uniform float u_time;
+        uniform vec2  u_res;
+
+        // Simplex-like noise
+        vec3 mod289(vec3 x){return x - floor(x*(1./289.))*289.;}
+        vec2 mod289(vec2 x){return x - floor(x*(1./289.))*289.;}
+        vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
+
+        float snoise(vec2 v){
+          const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+          vec2 i=floor(v+dot(v,C.yy));
+          vec2 x0=v-i+dot(i,C.xx);
+          vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
+          vec4 x12=x0.xyxy+C.xxzz;
+          x12.xy-=i1;
+          i=mod289(i);
+          vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
+          vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+          m=m*m; m=m*m;
+          vec3 x=2.*fract(p*C.www)-1.;
+          vec3 h=abs(x)-.5;
+          vec3 ox=floor(x+.5);
+          vec3 a0=x-ox;
+          m*=1.79284291400159-.85373472095314*(a0*a0+h*h);
+          vec3 g;
+          g.x=a0.x*x0.x+h.x*x0.y;
+          g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+          return 130.*dot(m,g);
+        }
+
+        void main(){
+          vec2 uv = gl_FragCoord.xy / u_res;
+          float t  = u_time * 0.28;
+
+          // Base deep navy
+          vec3 colNavy  = vec3(0.039, 0.067, 0.157);   // #0A1128
+          vec3 colSage  = vec3(0.522, 0.608, 0.557);   // #859B8E
+          vec3 colAmber = vec3(0.886, 0.490, 0.373);   // #E27D5F
+          vec3 colMid   = vec3(0.071, 0.129, 0.247);   // #12213F
+
+          // Layered noise waves
+          float n1 = snoise(vec2(uv.x * 2.5 + t * 0.6, uv.y * 2.0 - t * 0.3)) * 0.5 + 0.5;
+          float n2 = snoise(vec2(uv.x * 1.8 - t * 0.4, uv.y * 3.0 + t * 0.5)) * 0.5 + 0.5;
+          float n3 = snoise(vec2(uv.x * 4.0 + t * 0.2, uv.y * 1.5 + t * 0.7)) * 0.5 + 0.5;
+
+          // Soundwave ripples across horizontal bands
+          float wave = sin(uv.x * 18.0 - t * 3.5 + n1 * 4.0) * 0.5 + 0.5;
+          wave      *= sin(uv.y * 12.0 + t * 2.0 + n2 * 3.0) * 0.5 + 0.5;
+
+          // Aura glow (centered radial)
+          vec2 center = vec2(0.5, 0.42);
+          float dist  = length(uv - center);
+          float aura  = smoothstep(0.65, 0.0, dist) * (n2 * 0.6 + 0.4);
+
+          // Compose
+          vec3 col = colNavy;
+          col = mix(col, colMid,   n1 * 0.55);
+          col = mix(col, colSage,  wave * n2 * 0.35);
+          col = mix(col, colAmber, aura * 0.28 * n3);
+
+          // Vignette
+          float vign = 1.0 - smoothstep(0.35, 1.2, length(uv - 0.5));
+          col *= vign;
+
+          gl_FragColor = vec4(col, 1.0);
+        }
+      `;
+
+      function compileShader(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+
+      const prog = gl.createProgram();
+      gl.attachShader(prog, compileShader(gl.VERTEX_SHADER,   vsSource));
+      gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, fsSource));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      // Full-screen quad
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const posLoc = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(posLoc);
+      gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uRes  = gl.getUniformLocation(prog, 'u_res');
+
+      let start = null;
+      function frame(ts) {
+        if (!start) start = ts;
+        const t = (ts - start) / 1000;
+        gl.uniform1f(uTime, t);
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+
+    /* ----------------------------------------------------------
+       NAVBAR: scroll state
+    ---------------------------------------------------------- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ----------------------------------------------------------
+       SCROLL REVEAL
+    ---------------------------------------------------------- */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ----------------------------------------------------------
+       TESTIMONIAL SLIDER
+    ---------------------------------------------------------- */
+    const slidesEl  = document.getElementById('slides');
+    const dots      = document.querySelectorAll('.dot');
+    const prevBtn   = document.getElementById('prevBtn');
+    const nextBtn   = document.getElementById('nextBtn');
+    let current     = 0;
+    const total     = dots.length;
+    let autoTimer   = null;
+
+    function goTo(index) {
+      current = (index + total) % total;
+      slidesEl.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => {
+        const active = i === current;
+        d.classList.toggle('active', active);
+        d.setAttribute('aria-selected', active);
+        d.tabIndex = active ? 0 : -1;
+      });
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goTo(current + 1), 5500);
+    }
+
+    function resetAuto() { startAuto(); }
+
+    prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        goTo(parseInt(d.dataset.index, 10));
+        resetAuto();
+      });
+    });
+
+    // Swipe support (touch)
+    let touchStartX = 0;
+    slidesEl.parentElement.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    slidesEl.parentElement.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) { goTo(current + (dx < 0 ? 1 : -1)); resetAuto(); }
+    }, { passive: true });
+
+    // Keyboard arrows inside slider region
+    document.querySelector('.testimonial-slider').addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  { goTo(current - 1); resetAuto(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
+    });
+
+    // Pause on hover (respects reduced motion)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      startAuto();
+      document.querySelector('.testimonial-slider').addEventListener('mouseenter', () => clearInterval(autoTimer));
+      document.querySelector('.testimonial-slider').addEventListener('mouseleave', startAuto);
+    }
+
+    /* ----------------------------------------------------------
+       NEWSLETTER FORM — basic feedback
+    ---------------------------------------------------------- */
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = '✓ Done';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+        this.reset();
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
