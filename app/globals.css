@@ -716,7 +716,7 @@ p { max-width: 60ch; }
   }
   /* Centre sub-mark hidden — it appears in hero-bottom instead */
   .hero-center { display: none; }
-  /* hero-bottom flows as a natural column stack */
+  /* hero-bottom flows as a natural column stack, pushed to the bottom */
   .hero-bottom {
     position: relative;
     z-index: var(--z-overlay);
@@ -725,6 +725,7 @@ p { max-width: 60ch; }
     gap: 1rem;
     padding: 0 1.5rem clamp(2.5rem, 7vh, 4rem);
     text-align: left;
+    margin-top: auto;
   }
   /* Reveal the mobile sub-mark */
   .hero-mobile-mark { display: flex; }
