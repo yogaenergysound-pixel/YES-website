@@ -620,6 +620,12 @@ p { max-width: 60ch; }
   max-width: 360px;
 }
 
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 .hero-right {
   display: flex;
   flex-direction: column;
@@ -709,17 +715,24 @@ p { max-width: 60ch; }
   .hero-center { display: none; }
   .hero-mobile-mark { display: none; }
 
-  /* Content below the golden "e" sphere (~65% from top) */
+  /* hero-bottom becomes a full-viewport overlay — children positioned independently */
   .hero-bottom {
     position: absolute;
-    top: 65%; bottom: auto;
-    left: 0; right: 0;
+    inset: 0;
+    display: block;
+    padding: 0;
+  }
+
+  /* Text block (tagline + location) — inside the vessel, above the "e" */
+  .hero-text {
+    position: absolute;
+    top: 26%;
+    left: 2rem; right: 2rem;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    gap: 0.5rem;
     text-align: center;
-    gap: 1.1rem;
-    padding: 0 2rem;
   }
 
   /* Dark ink text on light background */
@@ -732,12 +745,22 @@ p { max-width: 60ch; }
     margin-bottom: 0;
   }
   .hero-location { color: rgba(26, 44, 50, 0.5); }
-  .hero-right { align-items: center; gap: 0.875rem; width: 100%; }
-  .hero-bottom .btn { width: 100%; justify-content: center; max-width: 260px; }
+
+  /* CTA — elegantly below the "e" sphere */
+  .hero-right {
+    position: absolute;
+    top: 68%;
+    left: 2rem; right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-right .btn { width: 100%; justify-content: center; max-width: 260px; }
 }
 
 @media (max-width: 480px) {
-  .hero-bottom { top: 62%; gap: 0.875rem; padding: 0 1.5rem; }
+  .hero-text { top: 23%; left: 1.5rem; right: 1.5rem; }
+  .hero-right { top: 66%; left: 1.5rem; right: 1.5rem; }
   .hero-tagline { font-size: clamp(1.3rem, 6vw, 1.6rem); }
 }
 

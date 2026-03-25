@@ -52,12 +52,14 @@ export default function Hero() {
 
       {/* ── Bottom content bar ── */}
       <div className="hero-bottom">
-        <p className="hero-tagline" id="hero-heading">
-          Recalibrate your<br />nervous system.
-        </p>
+        <div className="hero-text">
+          <p className="hero-tagline" id="hero-heading">
+            Recalibrate your<br />nervous system.
+          </p>
+          <span className="hero-location">Frisco, TX</span>
+        </div>
 
         <div className="hero-right">
-          <span className="hero-location">Frisco, TX</span>
           <a href="#method" className="btn btn-rose" role="button">
             Explore the Method
             <ArrowRight />
