@@ -715,10 +715,16 @@ p { max-width: 60ch; }
   .hero-center { display: none; }
   .hero-mobile-mark { display: none; }
 
-  /* hero-bottom dissolves — .hero (position:relative; height:100svh) becomes the
-     direct containing block so percentage tops are reliable */
+  /* hero-bottom steps out of the positioned chain — .hero (position:relative; height:100svh)
+     becomes the direct containing block so percentage tops are reliable */
   .hero-bottom {
-    display: contents;
+    position: static;
+    display: block;
+    height: 0;
+    overflow: visible;
+    padding: 0;
+    opacity: 1;
+    animation: none;
   }
 
   /* Text block (tagline + location) — inside the vessel interior, above the "e" */
