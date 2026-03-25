@@ -690,42 +690,43 @@ p { max-width: 60ch; }
 }
 
 @media (max-width: 768px) {
-  /* Image fills top portion; cream gradient fades it into content below */
+  /* Image fills upper 70% — extended to close the gap to content */
   .hero-img-wrapper {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: auto;
-    height: 62vh;
-    mask-image: none;
-    -webkit-mask-image: none;
+    height: 70vh;
+    /* Softly fade out the bottom edge so it seamlessly melts into the background */
+    mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
   }
   .hero-bg-img {
     object-fit: cover;
     object-position: center center;
     transform: none;
   }
-  /* Cream gradient replaces the cinematic vignette on mobile */
+  /* Compact cream fade — stays transparent until midpoint, gone by 83% */
   .hero::before {
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      transparent 35%,
-      rgba(242, 237, 228, 0.5) 55%,
-      rgba(242, 237, 228, 0.92) 72%,
-      #F2EDE4 85%
+      transparent 42%,
+      rgba(242, 237, 228, 0.45) 60%,
+      rgba(242, 237, 228, 0.88) 73%,
+      #F2EDE4 83%
     );
   }
-  /* Centre sub-mark hidden — it appears in hero-bottom instead */
+  /* Centre sub-mark hidden — appears in hero-bottom instead */
   .hero-center { display: none; }
-  /* hero-bottom flows as a natural column stack, pushed to the bottom */
+  /* Content anchored to bottom — overlays the cream gradient zone, no void */
   .hero-bottom {
-    position: relative;
-    z-index: var(--z-overlay);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
     gap: 1rem;
     padding: 0 1.5rem clamp(2.5rem, 7vh, 4rem);
     text-align: left;
-    margin-top: auto;
   }
   /* Reveal the mobile sub-mark */
   .hero-mobile-mark { display: flex; }
@@ -749,7 +750,7 @@ p { max-width: 60ch; }
 }
 
 @media (max-width: 480px) {
-  .hero-img-wrapper { height: 56vh; }
+  .hero-img-wrapper { height: 65vh; }
   .hero-bottom { padding: 0 1.25rem clamp(2rem, 6vh, 3.5rem); gap: 0.875rem; }
   .hero-tagline { font-size: clamp(1.25rem, 5vw, 1.5rem); }
 }
