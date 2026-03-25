@@ -696,80 +696,39 @@ p { max-width: 60ch; }
   white-space: nowrap;
 }
 
+/* Video hidden on desktop — mobile only */
+.hero-bg-video { display: none; }
+
 @media (max-width: 768px) {
-  /* Swap to portrait mobile image */
+  /* Swap to portrait assets */
   .hero-bg-desktop { display: none; }
   .hero-bg-mobile  { display: block; }
 
-  /* Light cream background to match portrait image */
-  .hero { background: #F4F1EC; }
+  /* Video: full-bleed on top of PNG, fades out when ended */
+  .hero-bg-video {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 1;
+    transition: opacity 0.8s ease;
+  }
+  .hero-video-ended { opacity: 0; pointer-events: none; }
 
-  /* Full-bleed — portrait image fills the entire hero */
+  /* Light cream background, no overlay */
+  .hero { background: #F4F1EC; }
+  .hero::before { display: none; }
+
+  /* Full-bleed image/video wrapper */
   .hero-img-wrapper { inset: 0; height: auto; mask-image: none; -webkit-mask-image: none; }
   .hero-bg-img { object-fit: cover; object-position: center top; transform: none; }
 
-  /* Image handles visual hierarchy — no overlay gradient needed */
-  .hero::before { display: none; }
-
-  /* Sub-mark hidden — yoga figure in image replaces it */
-  .hero-center { display: none; }
-  .hero-mobile-mark { display: none; }
-
-  /* hero-bottom steps out of the positioned chain — .hero (position:relative; height:100svh)
-     becomes the direct containing block so percentage tops are reliable */
-  .hero-bottom {
-    position: static;
-    display: block;
-    height: 0;
-    overflow: visible;
-    padding: 0;
-    opacity: 1;
-    animation: none;
-  }
-
-  /* Text block (tagline + location) — inside the vessel interior, above the "e" */
-  .hero-text {
-    position: absolute;
-    top: 30%;
-    left: 2rem; right: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    text-align: center;
-    z-index: var(--z-overlay);
-    animation: fadeIn 0.6s ease 1.1s both;
-  }
-
-  /* Dark ink text on light background */
-  .hero-tagline {
-    color: #1A2C32;
-    font-size: clamp(1.5rem, 6.5vw, 1.9rem);
-    text-align: center;
-    max-width: none;
-    line-height: 1.25;
-    margin-bottom: 0;
-  }
-  .hero-location { color: rgba(26, 44, 50, 0.5); }
-
-  /* CTA — elegantly below the "e" sphere (~68% of 100svh) */
-  .hero-right {
-    position: absolute;
-    top: 68%;
-    left: 2rem; right: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: var(--z-overlay);
-    animation: fadeIn 0.6s ease 1.3s both;
-  }
-  .hero-right .btn { width: 100%; justify-content: center; max-width: 260px; }
-}
-
-@media (max-width: 480px) {
-  .hero-text { top: 29%; left: 1.5rem; right: 1.5rem; }
-  .hero-right { top: 66%; left: 1.5rem; right: 1.5rem; }
-  .hero-tagline { font-size: clamp(1.3rem, 6vw, 1.6rem); }
+  /* Hide all text and CTA — visual content handled by video/image */
+  .hero-center  { display: none; }
+  .hero-bottom  { display: none; }
 }
 
 @keyframes fadeUp {

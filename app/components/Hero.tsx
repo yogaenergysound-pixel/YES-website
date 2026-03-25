@@ -1,3 +1,5 @@
+'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 
 function ArrowRight() {
@@ -20,6 +22,8 @@ function ArrowRight() {
 }
 
 export default function Hero() {
+  const [videoEnded, setVideoEnded] = useState(false)
+
   return (
     <section className="hero" aria-labelledby="hero-heading">
 
@@ -39,6 +43,18 @@ export default function Hero() {
           className="hero-bg-img hero-bg-mobile"
           priority
         />
+        {/* Mobile video — plays once, fades out to PNG */}
+        <video
+          className={`hero-bg-video${videoEnded ? ' hero-video-ended' : ''}`}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          onEnded={() => setVideoEnded(true)}
+          aria-hidden="true"
+        >
+          <source src="/yes-hero-mobile.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* ── "Yoga · Energy · Sound" centred below the logo in the image ── */}
