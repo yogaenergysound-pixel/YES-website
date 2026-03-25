@@ -60,7 +60,7 @@ export default function Method() {
       <div className="container">
 
         <div className="method-header reveal">
-          <span className="section-label">01 — The YES Method</span>
+          <span className="section-label">The YES Method</span>
           <h2 id="method-heading">
             Ancient wisdom.<br /><em>Modern healing.</em>
           </h2>

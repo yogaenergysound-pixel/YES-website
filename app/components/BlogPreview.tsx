@@ -18,7 +18,7 @@ export default function BlogPreview() {
         <div className="journal-preview-header reveal">
           <div className="journal-preview-label-row">
             <span className="section-label">
-              04 — The YES Journal
+              The YES Journal
             </span>
             <Link href="/blog" className="journal-view-all">
               View all articles

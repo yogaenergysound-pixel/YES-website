@@ -38,7 +38,7 @@ export default function BlogIndex() {
         <header className="journal-header">
           <div className="container">
             <span className="section-label" style={{ color: 'var(--rose)' }}>
-              04 — The YES Journal
+              The YES Journal
             </span>
             <h1 className="journal-headline">
               Wisdom for the<br /><em>modern body.</em>

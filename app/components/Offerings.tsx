@@ -46,7 +46,7 @@ export default function Offerings() {
 
         <div className="offerings-header reveal">
           <span className="section-label" style={{ color: 'var(--coral)' }}>
-            02 — How You Practice
+            How You Practice
           </span>
           <h2 id="offerings-heading">
             How will you<br />say <em>YES?</em>

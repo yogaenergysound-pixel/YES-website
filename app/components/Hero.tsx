@@ -45,6 +45,14 @@ export default function Hero() {
 
       {/* ── Bottom content bar ── */}
       <div className="hero-bottom">
+
+        {/* Mobile-only sub-mark — sits above tagline on small screens */}
+        <div className="hero-mobile-mark" aria-hidden="true">
+          <div className="hero-sub-mark-line" />
+          <span className="hero-sub-mark-text">Yoga &nbsp;·&nbsp; Energy &nbsp;·&nbsp; Sound</span>
+          <div className="hero-sub-mark-line" />
+        </div>
+
         <p className="hero-tagline" id="hero-heading">
           Recalibrate your<br />nervous system.
         </p>

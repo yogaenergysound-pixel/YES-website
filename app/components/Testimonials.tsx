@@ -26,7 +26,7 @@ export default function Testimonials() {
 
         <div className="testi-header reveal">
           <span className="section-label" style={{ color: 'var(--coral)' }}>
-            03 — Voices of Transformation
+            Voices of Transformation
           </span>
           <h2 id="stories-heading">
             What happens when<br />you say <em>yes.</em>
