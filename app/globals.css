@@ -383,8 +383,8 @@ p { max-width: 60ch; }
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;
@@ -500,8 +500,8 @@ p { max-width: 60ch; }
 ================================================================ */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 700px;
+  height: 100svh;
+  min-height: 560px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -671,42 +671,53 @@ p { max-width: 60ch; }
 
 @media (max-width: 768px) {
   .hero {
-    background: #F7F3EA; /* match logo background */
+    background: #F7F3EA;
   }
   .hero::before {
-    /* soften vignette on mobile so it doesn't darken the transparent edges */
     background: radial-gradient(ellipse 150% 120% at 50% 50%, transparent 40%, rgba(26, 44, 50, 0.12) 100%);
   }
   .hero-img-wrapper {
-    height: 65vh;
-    top: 5vh;
-    /* Soft blend to mask any hard edges from the contain aspect ratio */
-    mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
+    height: 62vh;
+    top: 4vh;
+    mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, black 45%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 50%, black 45%, transparent 100%);
   }
-  /* Force contain so the logo stops being cropped excessively */
   .hero-bg-img {
     object-fit: contain;
-    transform: scale(1.3);
+    transform: scale(1.25);
   }
 }
 
 @media (max-width: 600px) {
   .hero-bottom {
     flex-direction: column;
-    align-items: center; /* Center to balance the mobile layout */
+    align-items: center;
     text-align: center;
-    gap: 1.5rem;
-    padding-bottom: clamp(3rem, 10vh, 5rem); /* Pull it up from the very bottom edge */
+    gap: 1.25rem;
+    padding: 0 1.5rem clamp(2.5rem, 8vh, 4rem);
   }
-  .hero-right { align-items: center; }
-  .hero-tagline { text-align: center; max-width: 100%; margin-bottom: 0.25rem; }
+  .hero-right { align-items: center; gap: 0.875rem; }
+  .hero-tagline {
+    text-align: center;
+    max-width: 100%;
+    margin-bottom: 0;
+    font-size: clamp(1rem, 4.5vw, 1.4rem);
+  }
   .hero-sub-mark { display: none; }
+  /* Full-width CTA on small screens */
+  .hero-bottom .btn {
+    width: 100%;
+    justify-content: center;
+    max-width: 280px;
+  }
 }
 
-/* Sub-mark sits lower on desktop; pull it up on smaller viewports */
 @media (max-width: 480px) {
-  .hero-center { padding-top: 56vh; }
+  .hero-center { padding-top: 52vh; }
+  .hero-img-wrapper {
+    height: 58vh;
+    top: 3vh;
+  }
 }
 
 @keyframes fadeUp {
@@ -863,7 +874,9 @@ p { max-width: 60ch; }
 }
 
 @media (max-width: 600px) {
-  .method-founder { flex-direction: column; gap: 1rem; }
+  .method-founder { flex-direction: column; align-items: center; gap: 1.25rem; text-align: center; }
+  .method-founder-name-row { justify-content: center; }
+  .method-founder-bio { max-width: none; }
 }
 
 /* Numbered pillar rows */
@@ -936,8 +949,9 @@ p { max-width: 60ch; }
 .pillar:hover .pillar-icon svg { stroke: var(--rose); }
 
 @media (max-width: 768px) {
-  .pillar { grid-template-columns: 60px 1fr; }
+  .pillar { grid-template-columns: 52px 1fr; gap: 1.25rem 1.5rem; }
   .pillar-icon { display: none; }
+  .pillar-num { font-size: clamp(1.75rem, 5vw, 3rem); }
 }
 
 /* ================================================================
@@ -1048,8 +1062,10 @@ p { max-width: 60ch; }
 .offer-row:hover .offer-link svg { transform: translateX(4px); }
 
 @media (max-width: 768px) {
-  .offer-row { grid-template-columns: 1fr; }
-  .offer-right { flex-direction: column; align-items: flex-start; }
+  .offer-row { grid-template-columns: 1fr; padding: clamp(1.5rem, 4vw, 2.5rem) 0; }
+  .offer-right { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .offer-left { gap: 1.25rem; }
+  .offer-link { min-height: 44px; }
 }
 
 /* ================================================================
@@ -1136,8 +1152,9 @@ p { max-width: 60ch; }
 }
 
 @media (max-width: 680px) {
-  .testi-item { grid-template-columns: 1fr; }
+  .testi-item { grid-template-columns: 1fr; gap: 1.25rem; }
   .testi-meta { text-align: left; }
+  .testi-quote { font-size: clamp(1.05rem, 5vw, 1.75rem); }
 }
 
 /* ================================================================
@@ -1248,6 +1265,9 @@ p { max-width: 60ch; }
 
 @media (max-width: 680px) {
   .cta-body-row { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .cta-headline { line-height: 1.0; }
+  .cta-buttons { width: 100%; }
+  .cta-buttons .btn { flex: 1; justify-content: center; min-width: 0; }
 }
 
 /* ================================================================
@@ -1317,7 +1337,7 @@ p { max-width: 60ch; }
   background: transparent;
   border: none;
   outline: none;
-  padding: 0.75rem 1.25rem;
+  padding: 0.875rem 1.25rem;
   font-size: 0.875rem;
   color: var(--text-on-dark);
   min-width: 0;
@@ -1347,7 +1367,7 @@ p { max-width: 60ch; }
 }
 
 .social-icon {
-  width: 38px; height: 38px;
+  width: 44px; height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(245, 241, 236, 0.1);
   display: flex; align-items: center; justify-content: center;
@@ -1386,6 +1406,8 @@ p { max-width: 60ch; }
   font-size: 0.9rem;
   color: var(--text-muted-dark);
   transition: color 200ms;
+  display: block;
+  padding: 0.3rem 0;
 }
 .footer-links a:hover { color: var(--text-on-dark); }
 
@@ -1682,7 +1704,9 @@ p { max-width: 60ch; }
   max-width: 70%;
   transition: color 280ms;
 }
-@media (max-width: 640px) { .journal-featured-title { max-width: 100%; } }
+@media (max-width: 640px) {
+  .journal-featured-title { max-width: 100%; font-size: clamp(1.5rem, 6vw, 2rem); }
+}
 .journal-featured-card:hover .journal-featured-title { color: var(--sand); }
 
 .journal-featured-excerpt {
@@ -1694,6 +1718,13 @@ p { max-width: 60ch; }
   display: none;
 }
 @media (min-width: 768px) { .journal-featured-excerpt { display: block; } }
+
+/* On mobile, switch to a taller portrait card so text overlay has room */
+@media (max-width: 540px) {
+  .journal-featured-card { aspect-ratio: 3 / 4; }
+  .journal-featured-body { padding: 1.5rem; }
+  .journal-featured-cta { padding: 0.55rem 1.1rem; }
+}
 
 .journal-featured-cta {
   display: inline-flex;
@@ -1918,6 +1949,14 @@ p { max-width: 60ch; }
   border-radius: 16px;
 }
 
+@media (max-width: 640px) {
+  .post-hero { padding: 0 0 clamp(2.5rem, 6vw, 4rem); }
+  .post-hero-img { aspect-ratio: 4 / 3; border-radius: 0; }
+  .post-title { font-size: clamp(2rem, 8vw, 3.5rem); max-width: none; }
+  .post-excerpt { font-size: 0.95rem; }
+  .post-cat-badge { font-size: 0.58rem; }
+}
+
 /* ── Article body ── */
 .post-body {
   padding: clamp(4rem, 8vw, 7rem) 0;
@@ -2036,4 +2075,59 @@ p { max-width: 60ch; }
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+/* ================================================================
+   GLOBAL MOBILE POLISH — 375–480px
+================================================================ */
+@media (max-width: 480px) {
+
+  /* Reduce container horizontal breathing room slightly */
+  .container { padding: 0 1.25rem; }
+
+  /* Section labels */
+  .section-label { font-size: 0.62rem; letter-spacing: 0.18em; }
+
+  /* Buttons feel more generous on small screens */
+  .btn { padding: 0.875rem 1.75rem; font-size: 0.75rem; }
+
+  /* Method section */
+  .method { padding: clamp(4rem, 10vw, 6rem) 0; }
+  .method-header { margin-bottom: clamp(2.5rem, 7vw, 4rem); }
+  .pillar { padding: clamp(1.75rem, 5vw, 2.5rem) 0; }
+  .pillar-title { font-size: clamp(1.4rem, 5.5vw, 2.4rem); }
+  .pillar-copy { font-size: 0.9rem; }
+
+  /* Offerings */
+  .offerings-header { padding: clamp(3.5rem, 8vw, 5rem) 0 clamp(2rem, 5vw, 3rem); }
+  .offer-title { font-size: clamp(1.35rem, 5.5vw, 2rem); }
+  .offer-copy { font-size: 0.875rem; max-width: none; }
+
+  /* Testimonials */
+  .testimonials { padding: clamp(4rem, 10vw, 6rem) 0; }
+  .testi-header { margin-bottom: clamp(2.5rem, 7vw, 4rem); }
+  .testi-item { padding: clamp(1.75rem, 5vw, 2.5rem) 0; }
+
+  /* BlogPreview / Journal cards — full-bleed image on mobile */
+  .journal-card-img-wrap { border-radius: 12px 12px 0 0; }
+  .journal-card-body { padding: 1.25rem; }
+
+  /* Footer */
+  .footer { padding: 3.5rem 0 2rem; }
+  .footer-grid { gap: 2rem; }
+  .footer-socials { gap: 0.625rem; }
+
+  /* Blog post body */
+  .post-body { padding: clamp(2.5rem, 7vw, 4rem) 0; }
+  .post-body-inner { padding: 0 1.25rem; }
+  .post-h2 { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+  .post-pullquote { font-size: clamp(1.1rem, 5vw, 1.4rem); padding: 1.25rem 1.25rem 1.25rem 1.5rem; }
+  .post-cta { padding: clamp(3.5rem, 10vw, 5rem) 0; }
+  .post-cta-btns { flex-direction: column; }
+  .post-cta-btns .btn { width: 100%; justify-content: center; }
+
+  /* Blog listing page */
+  .journal-header { padding: clamp(7rem, 18vw, 10rem) 0 clamp(2.5rem, 6vw, 4rem); }
+  .journal-more-section { padding: 0 0 clamp(4rem, 10vw, 6rem); }
+  .journal-index-body { padding: 1.1rem; }
 }
