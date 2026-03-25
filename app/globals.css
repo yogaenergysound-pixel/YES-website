@@ -269,12 +269,12 @@ p { max-width: 60ch; }
   justify-content: space-between;
   padding: 0.75rem 1.25rem 0.75rem 1rem;
   border-radius: 100px;
-  border: 1px solid rgba(26, 44, 50, 0.1);
-  /* Light frosted pill — readable over the cream hero */
-  background: rgba(242, 237, 228, 0.78);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 2px 16px rgba(26, 44, 50, 0.08);
+  border: 1px solid transparent;
+  /* Transparent over hero image */
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
   transition:
     background    400ms var(--ease),
     backdrop-filter 400ms var(--ease),
@@ -284,16 +284,14 @@ p { max-width: 60ch; }
     top           400ms var(--ease);
 }
 
-/* ── Dark frosted pill once scrolled into dark sections ── */
+/* ── Light frosted pill once scrolled ── */
 .nav.scrolled {
   top: 0.75rem;
-  background: rgba(8, 6, 13, 0.76);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-color: rgba(245, 241, 236, 0.07);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.38),
-    0 1px 0 rgba(245, 241, 236, 0.05) inset;
+  background: rgba(242, 237, 228, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(26, 44, 50, 0.1);
+  box-shadow: 0 2px 16px rgba(26, 44, 50, 0.08);
 }
 
 /* ── Logo: outlined YES letterforms ── */
@@ -325,7 +323,7 @@ p { max-width: 60ch; }
   transition: -webkit-text-stroke-color 400ms var(--ease);
 }
 .nav.scrolled .nav-yes-letters {
-  -webkit-text-stroke-color: rgba(245, 241, 236, 0.9);
+  -webkit-text-stroke-color: rgba(26, 44, 50, 0.8);
 }
 
 .nav-yes-sub {
@@ -339,7 +337,7 @@ p { max-width: 60ch; }
   transition: color 400ms var(--ease);
 }
 .nav.scrolled .nav-yes-sub {
-  color: rgba(245, 241, 236, 0.38);
+  color: rgba(26, 44, 50, 0.45);
 }
 
 .nav-links {
@@ -360,10 +358,10 @@ p { max-width: 60ch; }
 }
 .nav-links a:hover { color: #1A2C32; }
 .nav.scrolled .nav-links a {
-  color: rgba(245, 241, 236, 0.88);
-  text-shadow: 0 1px 4px rgba(8,6,13,0.6);
+  color: rgba(26, 44, 50, 0.75);
+  text-shadow: none;
 }
-.nav.scrolled .nav-links a:hover { color: var(--white); }
+.nav.scrolled .nav-links a:hover { color: #1A2C32; }
 
 .nav-cta-btn {
   color: rgba(26, 44, 50, 0.85) !important;
@@ -379,13 +377,13 @@ p { max-width: 60ch; }
   color: var(--rose) !important;
 }
 .nav.scrolled .nav-cta-btn {
-  color: var(--white) !important;
-  border-color: rgba(245, 241, 236, 0.35) !important;
+  color: rgba(26, 44, 50, 0.85) !important;
+  border-color: rgba(26, 44, 50, 0.28) !important;
 }
 .nav.scrolled .nav-cta-btn:hover {
-  background: rgba(43, 143, 162, 0.25) !important;
+  background: rgba(43, 143, 162, 0.12) !important;
   border-color: var(--rose) !important;
-  color: var(--white) !important;
+  color: var(--rose) !important;
 }
 
 /* ── Hamburger button ── */
@@ -412,7 +410,7 @@ p { max-width: 60ch; }
   transition: transform 250ms var(--ease), opacity 250ms var(--ease);
 }
 .nav.scrolled .nav-hamburger span {
-  background: rgba(245, 241, 236, 0.9);
+  background: rgba(26, 44, 50, 0.8);
 }
 .nav.nav-open .nav-hamburger span:nth-child(1) {
   transform: translateY(6.5px) rotate(45deg);
@@ -439,9 +437,9 @@ p { max-width: 60ch; }
   overflow: hidden;
 }
 .nav.scrolled .nav-mobile-menu {
-  background: rgba(8, 6, 13, 0.94);
-  border-color: rgba(245, 241, 236, 0.07);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  background: rgba(242, 237, 228, 0.97);
+  border-color: rgba(26, 44, 50, 0.1);
+  box-shadow: 0 8px 32px rgba(26, 44, 50, 0.12);
 }
 .nav-mobile-menu ul {
   list-style: none;
@@ -464,17 +462,17 @@ p { max-width: 60ch; }
   background: rgba(43, 143, 162, 0.05);
 }
 .nav.scrolled .nav-mobile-menu a {
-  color: rgba(245, 241, 236, 0.78);
+  color: rgba(26, 44, 50, 0.75);
 }
 .nav.scrolled .nav-mobile-menu a:hover {
-  color: var(--white);
-  background: rgba(245, 241, 236, 0.05);
+  color: var(--rose);
+  background: rgba(43, 143, 162, 0.05);
 }
 .nav-mobile-menu li:not(:last-child) a {
   border-bottom: 1px solid rgba(26, 44, 50, 0.06);
 }
 .nav.scrolled .nav-mobile-menu li:not(:last-child) a {
-  border-bottom-color: rgba(245, 241, 236, 0.06);
+  border-bottom-color: rgba(26, 44, 50, 0.06);
 }
 .nav-mobile-cta {
   display: block;
@@ -492,11 +490,11 @@ p { max-width: 60ch; }
   color: var(--rose) !important;
 }
 .nav.scrolled .nav-mobile-cta {
-  color: var(--white) !important;
-  border-color: rgba(245, 241, 236, 0.35) !important;
+  color: rgba(26, 44, 50, 0.85) !important;
+  border-color: rgba(26, 44, 50, 0.28) !important;
 }
 .nav.scrolled .nav-mobile-cta:hover {
-  background: rgba(43, 143, 162, 0.25) !important;
+  background: rgba(43, 143, 162, 0.12) !important;
   border-color: var(--rose) !important;
 }
 
@@ -711,10 +709,10 @@ p { max-width: 60ch; }
   .hero-center { display: none; }
   .hero-mobile-mark { display: none; }
 
-  /* Content placed inside the vessel interior zone (~25% from top) */
+  /* Content below the golden "e" sphere (~65% from top) */
   .hero-bottom {
     position: absolute;
-    top: 25%; bottom: auto;
+    top: 65%; bottom: auto;
     left: 0; right: 0;
     flex-direction: column;
     align-items: center;
@@ -739,7 +737,7 @@ p { max-width: 60ch; }
 }
 
 @media (max-width: 480px) {
-  .hero-bottom { top: 22%; gap: 0.875rem; padding: 0 1.5rem; }
+  .hero-bottom { top: 62%; gap: 0.875rem; padding: 0 1.5rem; }
   .hero-tagline { font-size: clamp(1.3rem, 6vw, 1.6rem); }
 }
 
@@ -1290,8 +1288,8 @@ p { max-width: 60ch; }
 @media (max-width: 680px) {
   .cta-body-row { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
   .cta-headline { line-height: 1.0; }
-  .cta-buttons { width: 100%; }
-  .cta-buttons .btn { flex: 1; justify-content: center; min-width: 0; }
+  .cta-buttons { width: 100%; flex-direction: column; }
+  .cta-buttons .btn { width: 100%; justify-content: center; }
 }
 
 /* ================================================================
@@ -1625,6 +1623,8 @@ p { max-width: 60ch; }
 
 @media (max-width: 768px) {
   .journal-grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
+  /* Keep label and view-all link on same baseline — hide the decorative line to save space */
+  .journal-preview-label-row .section-label::before { display: none; }
 }
 @media (max-width: 480px) {
   .journal-grid { grid-template-columns: 1fr; }

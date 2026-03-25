@@ -26,7 +26,7 @@ export const POSTS: BlogPost[] = [
     categoryColor: 'rose',
     readTime: 7,
     date: 'March 2026',
-    heroImage: '/blog/neuroscience_blog_hero.png',
+    heroImage: '/blog/neuroscience_blog_hero.jpg',
     excerpt:
       'Your brain is running in Beta right now — high-alert, analytical, always on. Here is what happens when you let sound change that, and why the science behind it is more compelling than you might expect.',
     sections: [
@@ -124,7 +124,7 @@ export const POSTS: BlogPost[] = [
     categoryColor: 'rose',
     readTime: 6,
     date: 'February 2026',
-    heroImage: '/blog/energy_work_for_skeptic.png',
+    heroImage: '/blog/energy_work_for_skeptic.jpg',
     excerpt:
       'The words "energy work" make a lot of analytically-minded people immediately switch off. Here is what happens when you look at it through the lens of physics, neuroscience, and the NIH\'s own research definitions.',
     sections: [
@@ -224,7 +224,7 @@ export const POSTS: BlogPost[] = [
     categoryColor: 'sage',
     readTime: 5,
     date: 'January 2026',
-    heroImage: '/blog/first_sound_bath.png',
+    heroImage: '/blog/first_sound_bath.jpg',
     excerpt:
       'Walking into your first sound bath can feel mysterious. The reality is beautifully simple. Here is a complete guide to what to expect, how to prepare, and why so many people describe it as the best night of sleep they have had in years.',
     sections: [
@@ -341,7 +341,7 @@ export const POSTS: BlogPost[] = [
     date: 'December 2025',
     excerpt:
       'In the high-stakes corridors of North Dallas and Frisco, a silent health crisis is deepening. More coffee, harder gym sessions, and digital detoxes are not fixing it — because they are targeting the wrong system.',
-    heroImage: '/blog/burnout_pandemic.png',
+    heroImage: '/blog/burnout_pandemic.jpg',
     sections: [
       {
         type: 'p',

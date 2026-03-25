@@ -1,11 +1,18 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <nav className={`nav${open ? ' nav-open' : ''}`} id="main-nav" aria-label="Main navigation">
+    <nav className={`nav${scrolled ? ' scrolled' : ''}${open ? ' nav-open' : ''}`} id="main-nav" aria-label="Main navigation">
       <a href="/" className="nav-logo" aria-label="YES — Yoga Energy Sound home">
         <span className="nav-yes-letters">YES</span>
       </a>
