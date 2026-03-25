@@ -532,6 +532,9 @@ p { max-width: 60ch; }
   object-position: center;
 }
 
+/* Mobile portrait image — hidden on desktop */
+.hero-bg-mobile { display: none; }
+
 /* ── Depth vignette — darkens edges to add cinematic dimension ── */
 .hero::before {
   content: '';
@@ -690,69 +693,54 @@ p { max-width: 60ch; }
 }
 
 @media (max-width: 768px) {
-  /* Image fills upper 70% — extended to close the gap to content */
-  .hero-img-wrapper {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: auto;
-    height: 70vh;
-    /* Softly fade out the bottom edge so it seamlessly melts into the background */
-    mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
-  }
-  .hero-bg-img {
-    object-fit: cover;
-    object-position: center center;
-    transform: none;
-  }
-  /* Compact cream fade — stays transparent until midpoint, gone by 83% */
-  .hero::before {
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 42%,
-      rgba(242, 237, 228, 0.45) 60%,
-      rgba(242, 237, 228, 0.88) 73%,
-      #F2EDE4 83%
-    );
-  }
-  /* Centre sub-mark hidden — appears in hero-bottom instead */
+  /* Swap to portrait mobile image */
+  .hero-bg-desktop { display: none; }
+  .hero-bg-mobile  { display: block; }
+
+  /* Light cream background to match portrait image */
+  .hero { background: #F4F1EC; }
+
+  /* Full-bleed — portrait image fills the entire hero */
+  .hero-img-wrapper { inset: 0; height: auto; mask-image: none; -webkit-mask-image: none; }
+  .hero-bg-img { object-fit: cover; object-position: center top; transform: none; }
+
+  /* Image handles visual hierarchy — no overlay gradient needed */
+  .hero::before { display: none; }
+
+  /* Sub-mark hidden — yoga figure in image replaces it */
   .hero-center { display: none; }
-  /* Content anchored to bottom — overlays the cream gradient zone, no void */
+  .hero-mobile-mark { display: none; }
+
+  /* Content placed inside the vessel interior zone (~25% from top) */
   .hero-bottom {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
+    top: 25%; bottom: auto;
+    left: 0; right: 0;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
-    gap: 1rem;
-    padding: 0 1.5rem clamp(2.5rem, 7vh, 4rem);
-    text-align: left;
+    text-align: center;
+    gap: 1.1rem;
+    padding: 0 2rem;
   }
-  /* Reveal the mobile sub-mark */
-  .hero-mobile-mark { display: flex; }
+
+  /* Dark ink text on light background */
   .hero-tagline {
-    font-size: clamp(1.35rem, 5.5vw, 1.7rem);
-    text-align: left;
+    color: #1A2C32;
+    font-size: clamp(1.5rem, 6.5vw, 1.9rem);
+    text-align: center;
     max-width: none;
+    line-height: 1.25;
     margin-bottom: 0;
-    line-height: 1.3;
   }
-  .hero-right {
-    align-items: flex-start;
-    gap: 0.875rem;
-    width: 100%;
-  }
-  .hero-bottom .btn {
-    width: 100%;
-    justify-content: center;
-    max-width: none;
-  }
+  .hero-location { color: rgba(26, 44, 50, 0.5); }
+  .hero-right { align-items: center; gap: 0.875rem; width: 100%; }
+  .hero-bottom .btn { width: 100%; justify-content: center; max-width: 260px; }
 }
 
 @media (max-width: 480px) {
-  .hero-img-wrapper { height: 65vh; }
-  .hero-bottom { padding: 0 1.25rem clamp(2rem, 6vh, 3.5rem); gap: 0.875rem; }
-  .hero-tagline { font-size: clamp(1.25rem, 5vw, 1.5rem); }
+  .hero-bottom { top: 22%; gap: 0.875rem; padding: 0 1.5rem; }
+  .hero-tagline { font-size: clamp(1.3rem, 6vw, 1.6rem); }
 }
 
 @keyframes fadeUp {

@@ -23,13 +23,20 @@ export default function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-heading">
 
-      {/* ── Full-bleed background image ── */}
+      {/* ── Background images — desktop landscape / mobile portrait ── */}
       <div className="hero-img-wrapper" aria-hidden="true">
         <Image
           src="/yes-hero-image.png"
           alt=""
           fill
-          className="hero-bg-img"
+          className="hero-bg-img hero-bg-desktop"
+          priority
+        />
+        <Image
+          src="/yes-hero-mobile.png"
+          alt=""
+          fill
+          className="hero-bg-img hero-bg-mobile"
           priority
         />
       </div>
@@ -45,14 +52,6 @@ export default function Hero() {
 
       {/* ── Bottom content bar ── */}
       <div className="hero-bottom">
-
-        {/* Mobile-only sub-mark — sits above tagline on small screens */}
-        <div className="hero-mobile-mark" aria-hidden="true">
-          <div className="hero-sub-mark-line" />
-          <span className="hero-sub-mark-text">Yoga &nbsp;·&nbsp; Energy &nbsp;·&nbsp; Sound</span>
-          <div className="hero-sub-mark-line" />
-        </div>
-
         <p className="hero-tagline" id="hero-heading">
           Recalibrate your<br />nervous system.
         </p>
