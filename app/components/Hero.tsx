@@ -24,15 +24,15 @@ export default function Hero() {
     <section className="hero" aria-labelledby="hero-heading">
 
       {/* ── Full-bleed background image ── */}
-      <Image
-        src="/yes-hero-image.png"
-        alt=""
-        fill
-        style={{ objectFit: 'cover', objectPosition: 'center' }}
-        className="hero-bg-img"
-        priority
-        aria-hidden="true"
-      />
+      <div className="hero-img-wrapper" aria-hidden="true">
+        <Image
+          src="/yes-hero-image.png"
+          alt=""
+          fill
+          className="hero-bg-img"
+          priority
+        />
+      </div>
 
       {/* ── "Yoga · Energy · Sound" centred below the logo in the image ── */}
       <div className="hero-center" aria-hidden="true">

@@ -509,8 +509,15 @@ p { max-width: 60ch; }
 }
 
 /* ── Background image ── */
-.hero-bg-img {
+.hero-img-wrapper {
+  position: absolute;
+  inset: 0;
   z-index: 0;
+}
+
+.hero-bg-img {
+  object-fit: cover;
+  object-position: center;
 }
 
 /* ── Depth vignette — darkens edges to add cinematic dimension ── */
@@ -662,9 +669,38 @@ p { max-width: 60ch; }
   100% { transform: scaleY(1); opacity: 0; }
 }
 
+@media (max-width: 768px) {
+  .hero {
+    background: #F7F3EA; /* match logo background */
+  }
+  .hero::before {
+    /* soften vignette on mobile so it doesn't darken the transparent edges */
+    background: radial-gradient(ellipse 150% 120% at 50% 50%, transparent 40%, rgba(26, 44, 50, 0.12) 100%);
+  }
+  .hero-img-wrapper {
+    height: 65vh;
+    top: 5vh;
+    /* Soft blend to mask any hard edges from the contain aspect ratio */
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 50%, black 50%, transparent 100%);
+  }
+  /* Force contain so the logo stops being cropped excessively */
+  .hero-bg-img {
+    object-fit: contain;
+    transform: scale(1.3);
+  }
+}
+
 @media (max-width: 600px) {
-  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-  .hero-right  { align-items: flex-start; }
+  .hero-bottom {
+    flex-direction: column;
+    align-items: center; /* Center to balance the mobile layout */
+    text-align: center;
+    gap: 1.5rem;
+    padding-bottom: clamp(3rem, 10vh, 5rem); /* Pull it up from the very bottom edge */
+  }
+  .hero-right { align-items: center; }
+  .hero-tagline { text-align: center; max-width: 100%; margin-bottom: 0.25rem; }
   .hero-sub-mark { display: none; }
 }
 
